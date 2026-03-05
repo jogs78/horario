@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AulaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,24 +12,10 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
+
 */
+Route::get('mostrar/{aula}', [AulaController::class,'show'])->name('aula.show');
+Route::post('guardar', [AulaController::class,'store'])->name('aula.store');
+Route::get('otro', [AulaController::class,'create'])->name('aula.create');
+Route::get('/',[AulaController::class,'index']);
 
-Route::get('/', function () {
-    return view('hola');
-
-/*
-    echo "<!DOCTYPE html>";
-    echo '<html lang="en">';
-    echo "<head>";
-        echo '<meta charset="UTF-8">';
-        echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
-        echo "<title>Document</title>";
-    echo "</head>";
-    echo "<body>";
-        echo "HOLA BIENVENIDO2";
-    echo "</body>";
-    echo "</html>";
-*/
-
-//    return view('welcome');
-});

@@ -9,13 +9,11 @@ $n = 18;
  <title>Document</title>
 </head>
 <body>
-<?php 
  @if ($n < 18) 
   HOLA BIENVENIDO, BUENOS DIAS
  @else
   HOLA BIENVENIDO, MUCHAS VECES
 
  @endif
-?>
 </body>
 </html>
