@@ -14,7 +14,17 @@ LISTADO DE AULAS
    <tr>
     <td>{{$aula->nombre}}</td>
     <td>{{$aula->capacidad}}</td>
-    <td><a href="{{route('aula.show',$aula->id )}}">MOSTRAR</a>,  EDITAR,BORRAR</td>
+    <td>
+      <a href="{{route('aula.show',$aula->id )}}">MOSTRAR</a>,
+      <a href="{{route('aula.edit',$aula->id )}}">EDITAR</a>,
+       <form action="{{route('aula.delete',$aula->id )}}" method="POST">
+       @method('DELETE')
+       @csrf
+       <input type="submit" value="BORRAR">
+       </form>
+       
+        
+    </td>
    </tr>
 @empty
    <tr>

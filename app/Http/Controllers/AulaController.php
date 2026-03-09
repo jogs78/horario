@@ -55,7 +55,6 @@ class AulaController extends Controller
      */
     public function show(Aula $aula) //route model biding
     {
-
         return view('aulas.show',compact('aula'));
     }
 
@@ -64,7 +63,7 @@ class AulaController extends Controller
      */
     public function edit(Aula $aula)
     {
-        //
+        return view('aulas.edit',compact('aula'));
     }
 
     /**
@@ -72,7 +71,10 @@ class AulaController extends Controller
      */
     public function update(UpdateAulaRequest $request, Aula $aula)
     {
-        //
+        //echo "actualizar...";
+        $aula->fill($request->all());
+        $aula->save();
+        return redirect('/');
     }
 
     /**
@@ -80,6 +82,7 @@ class AulaController extends Controller
      */
     public function destroy(Aula $aula)
     {
-        //
+        $aula->delete(); 
+        return redirect('/');
     }
 }

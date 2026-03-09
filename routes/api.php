@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MobiliarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('mobiliarios',[MobiliarioController::class,'index'])->name('mobiliario.index');
+
+Route::post('guardar', [MobiliarioController::class,'store'])->name('mobiliario.store');
+
+
+Route::get('mostrar/{mobiliario}', [ MobiliarioController::class ,'show'])->name('mobiliario.show');
