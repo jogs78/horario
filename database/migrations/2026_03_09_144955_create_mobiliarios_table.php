@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('mobiliarios', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignIdFor(Aula::class,"aula_id");            
+            
+            $table->foreignIdFor(Aula::class,"aula_id")->constrained();           
             $table->string("descripcion");
             $table->timestamps();
         });
