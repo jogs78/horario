@@ -13,10 +13,8 @@ class MobiliarioController extends Controller
      */
     public function index()
     {
-
         $todos = Mobiliario::all();
         return $todos->toJson();
-        //
     }
 
     /**
@@ -37,7 +35,6 @@ class MobiliarioController extends Controller
     public function show(Mobiliario $mobiliario)
     {
         return $mobiliario->toJson();
-         //   return view('aulas.show',compact('aula'));
     }
 
     /**
@@ -45,7 +42,10 @@ class MobiliarioController extends Controller
      */
     public function update(UpdateMobiliarioRequest $request, Mobiliario $mobiliario)
     {
-        //
+        $mobiliario->descripcion = $request->input('descripcion');
+        $mobiliario->aula_id = $request->input('aula_id');
+        $mobiliario->save();
+        return $mobiliario->toJson();
     }
 
     /**
@@ -53,6 +53,7 @@ class MobiliarioController extends Controller
      */
     public function destroy(Mobiliario $mobiliario)
     {
-        //
+        $mobiliario->delete();
+        return $mobiliario->toJson();
     }
 }
