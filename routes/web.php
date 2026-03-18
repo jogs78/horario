@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AulaController;
+use App\Http\Controllers\PuertaControllert;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 
 */
+
+Route::get('entrar',[PuertaControllert::class,'ingresar']);
+Route::post('validar',[PuertaControllert::class,'validar'])->name('puerta.validar');
 Route::delete('borrar/{aula}', [AulaController::class,'destroy'])->name('aula.delete');
 Route::put('actualizar/{aula}', [AulaController::class,'update'])->name('aula.update');
 Route::get('editar/{aula}', [AulaController::class,'edit'])->name('aula.edit');
