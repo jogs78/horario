@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class PuertaControllert extends Controller
@@ -13,7 +13,7 @@ class PuertaControllert extends Controller
         return view('sistema.entrada');
     }
     public function validar(Request $peticion){
-        $encontrado = User::where('name', $peticion->input('usuario'))->first();
+        $encontrado = User::where('email', $peticion->input('usuario'))->first();
         if(is_null($encontrado)){
             echo "no hay";
         }else{
@@ -23,6 +23,8 @@ class PuertaControllert extends Controller
             //if ($encontrado->password == $peticion->input('clave')){
             if (Hash::check($peticion->input('clave'),$encontrado->password)){
                 echo "puede entrar porque la clave es igual";
+                Auth::login($encontrado);
+                return redirect('/');
             }else{
                 echo "fallo de autenticacion la clave no es la de la base de datos.";
             }
@@ -32,6 +34,7 @@ class PuertaControllert extends Controller
     }
 
     public function salir(){
-
+        Auth::logout();
+        return redirect('/');
     }
 }

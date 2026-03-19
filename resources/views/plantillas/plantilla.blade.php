@@ -6,6 +6,13 @@
  <title>@yield('titulo')</title>
 </head>
 <body>
+@guest
+  hola debes <a href="{{route('puerta.entrar')}}">entrar</a>
+  @php(die())
+@else
+ hola {{Auth::user()->name}}  puedes <a href="{{route('puerta.salir')}}">salir</a>
+@endguest
+<hr>
  @yield('contenido')
 </body>
 </html>

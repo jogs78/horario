@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 */
 
-Route::get('entrar',[PuertaControllert::class,'ingresar']);
+Route::get('entrar',[PuertaControllert::class,'ingresar'])->name('puerta.entrar');
+Route::get('salir',[PuertaControllert::class,'salir'])->name('puerta.salir');
 Route::post('validar',[PuertaControllert::class,'validar'])->name('puerta.validar');
 Route::delete('borrar/{aula}', [AulaController::class,'destroy'])->name('aula.delete');
 Route::put('actualizar/{aula}', [AulaController::class,'update'])->name('aula.update');
