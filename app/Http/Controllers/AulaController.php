@@ -6,6 +6,12 @@ use App\Http\Requests\StoreAulaRequest;
 use App\Http\Requests\UpdateAulaRequest;
 use App\Models\Aula;
 
+
+USE Illuminate\Support\Facades\Auth; //autenticacion
+use Illuminate\Support\Facades\Gate; //autorizacion
+use Illuminate\Support\Facades\Log;  //auditoria
+
+
 class AulaController extends Controller
 {
     /**
@@ -37,15 +43,15 @@ class AulaController extends Controller
         $nombre = $request->input('nombre');
         $capacidad = $request->input('capacidad');
 //        @dump($nombre);
-       
         $nueva = new Aula();
+
 /*
         $nueva->nombre = $nombre;
         $nueva->capacidad  = $capacidad;
 */
         $nueva->fill($datos);        
         $nueva->save();
-
+        Log::channel('aulas')->info("Aula Creada",["quien"=>Auth::user()->name, "cual:" => $nueva->nombre ]);
         return redirect('/');
 
     }
@@ -63,7 +69,13 @@ class AulaController extends Controller
      */
     public function edit(Aula $aula)
     {
-        return view('aulas.edit',compact('aula'));
+//        $this->authorize('update', $aula); 
+        if(Gate::allows('update',$aula)){
+            return view('aulas.edit',compact('aula'));
+        }else{
+            echo "NO PUEDES....";
+
+        }
     }
 
     /**

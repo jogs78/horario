@@ -37,7 +37,12 @@ class AulaPolicy
      */
     public function update(User $user, Aula $aula): bool
     {
-        //
+        if($user->email == 'ekub@example.org'){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     /**

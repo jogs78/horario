@@ -15,8 +15,14 @@ LISTADO DE AULAS
     <td>{{$aula->nombre}}</td>
     <td>{{$aula->capacidad}}</td>
     <td>
-      <a href="{{route('aula.show',$aula->id )}}">MOSTRAR</a>,
-      <a href="{{route('aula.edit',$aula->id )}}">EDITAR</a>,
+      <a href="{{route('aula.show',$aula->id )}}">MOSTRAR</a>,         
+
+      @can('update', $aula)
+         <a href="{{route('aula.edit',$aula->id )}}">EDITAR</a>,
+      @else
+         <a href="#" disabled="disabled">EDITAR</a>,
+      @endcan
+
        <form action="{{route('aula.delete',$aula->id )}}" method="POST">
        @method('DELETE')
        @csrf
