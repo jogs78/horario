@@ -10,7 +10,7 @@
   hola debes <a href="{{route('puerta.entrar')}}">entrar</a>
   @php(die())
 @else
- hola {{Auth::user()->name}}  puedes <a href="{{route('puerta.salir')}}">salir</a>
+ hola {{Auth::user()->nombre}}  puedes <a href="{{route('puerta.salir')}}">salir</a>
 @endguest
 <hr>
  @yield('contenido')

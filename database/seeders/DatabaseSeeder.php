@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AulaSeeder::class);
         $this->call(MobiliarioSeeder::class);
+        $this->call(UsuarioSeeder::class);
 
         \App\Models\User::factory(10)->create();
 

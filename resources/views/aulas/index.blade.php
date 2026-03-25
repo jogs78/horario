@@ -20,7 +20,7 @@ LISTADO DE AULAS
       @can('update', $aula)
          <a href="{{route('aula.edit',$aula->id )}}">EDITAR</a>,
       @else
-         <a href="#" disabled="disabled">EDITAR</a>,
+         <a href="#" disabled="disabled">no EDITAR</a>,
       @endcan
 
        <form action="{{route('aula.delete',$aula->id )}}" method="POST">

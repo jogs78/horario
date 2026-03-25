@@ -2,17 +2,16 @@
 
 namespace App\Policies;
 
-use App\Models\Aula;
+use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Auth\Access\Response;
-use Illuminate\Support\Facades\Log;
 
-class AulaPolicy
+class UsuarioPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(Usuario $user): bool
+    public function viewAny(User $user): bool
     {
         //
     }
@@ -20,7 +19,7 @@ class AulaPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(Usuario $user, Aula $aula): bool
+    public function view(User $user, Usuario $usuario): bool
     {
         //
     }
@@ -28,7 +27,7 @@ class AulaPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(Usuario $user): bool
+    public function create(User $user): bool
     {
         //
     }
@@ -36,21 +35,15 @@ class AulaPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(Usuario $usuario, Aula $aula): bool
+    public function update(User $user, Usuario $usuario): bool
     {
-        Log::channel('autenticacion')->info('intentando la politica',[$usuario->nombre_de_usuario]);
-        if($usuario->nombre_de_usuario == 'jperez'){
-            return true;
-        }else{
-            return false;
-        }
-
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(Usuario $user, Aula $aula): bool
+    public function delete(User $user, Usuario $usuario): bool
     {
         //
     }
@@ -58,7 +51,7 @@ class AulaPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(Usuario $user, Aula $aula): bool
+    public function restore(User $user, Usuario $usuario): bool
     {
         //
     }
@@ -66,7 +59,7 @@ class AulaPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(Usuario $user, Aula $aula): bool
+    public function forceDelete(User $user, Usuario $usuario): bool
     {
         //
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; //autenticacion
 use Illuminate\Support\Facades\Hash; //has no reversible 
@@ -19,7 +19,7 @@ class PuertaControllert extends Controller
     }
     public function validar(Request $peticion){
         Log::info("Intenta iniciar session" ,[ $peticion->input('usuario')]);
-        $encontrado = User::where('email', $peticion->input('usuario'))->first();
+        $encontrado = Usuario::where('nombre_de_usuario', $peticion->input('usuario'))->first();
         if(is_null($encontrado)){
             Log::warning("Intenta iniciar session" ,[ $peticion->input('usuario')]);
             echo "no hay";
@@ -29,7 +29,7 @@ class PuertaControllert extends Controller
 //            echo "tiene: " . $encontrado->password . "<br>";
 //            echo "el puso:" . $peticion->input('clave'). "<br>";
             //if ($encontrado->password == $peticion->input('clave')){
-            if (Hash::check($peticion->input('clave'),$encontrado->password)){
+            if (Hash::check($peticion->input('clave'),$encontrado->clave)){
 //                echo "puede entrar porque la clave es igual";
                 Log::channel('authn')->info("inicio correcto de: " ,[ $peticion->input('usuario')]);
                 Auth::login($encontrado);
