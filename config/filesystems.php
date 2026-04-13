@@ -24,7 +24,7 @@ return [
     | may even configure multiple disks of the same driver. Defaults have
     | been set up for each driver as an example of the required values.
     |
-    | Supported Drivers: "local", "ftp", "sftp", "s3"
+    | Supported Drivers: "local", "ftp", "sftp", "s3"; 'dropbox','gdrive','onedrive'
     |
     */
 
@@ -70,7 +70,9 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('ad') => storage_path('app/public'),
+        public_path('js') => storage_path('app/scripts'),
+        public_path('css') => storage_path('app/estilos'),
     ],
 
 ];
