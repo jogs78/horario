@@ -42,6 +42,7 @@ Route::post('/recibir',function( Request $request ){
  $y = $request->file('archivo');
  echo $y;
  //$y->storeas
- Storage::disk('local')->put('evidencias',$y);
-
+ $z=Storage::disk('local')->put('evidencias',$y);
+ echo "guardado:";
+ dump($z);
 })->name('archivos.recibir');
