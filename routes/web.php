@@ -25,6 +25,7 @@ Route::delete('borrar/{aula}', [AulaController::class,'destroy'])->name('aula.de
 Route::put('actualizar/{aula}', [AulaController::class,'update'])->name('aula.update');
 Route::get('editar/{aula}', [AulaController::class,'edit'])->name('aula.edit');
 Route::get('mostrar/{aula}', [AulaController::class,'show'])->name('aula.show');
+Route::get('ver/{aula}', [AulaController::class,'ver'])->name('aula.ver');
 Route::post('guardar', [AulaController::class,'store'])->name('aula.store');
 Route::get('otro', [AulaController::class,'create'])->name('aula.create');
 Route::get('/',[AulaController::class,'index']);

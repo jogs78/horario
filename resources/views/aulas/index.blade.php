@@ -3,10 +3,11 @@
 LISTADO DE AULAS
 @endsection
 @section('contenido')
- <table>
+ <table border = "1">
   <thead>
    <th>NOMBRE</th>
    <th>CAPACIDAD</th>
+   <th>foto</th>
    <th>ACCIONES</th>
   </thead>
   <tbody>
@@ -14,6 +15,16 @@ LISTADO DE AULAS
    <tr>
     <td>{{$aula->nombre}}</td>
     <td>{{$aula->capacidad}}</td>
+    <td> 
+      @if($aula->foto == "nada")
+         SIN FOTO
+      @else
+         
+         <img src="{{route('aula.ver',$aula->id)}}" alt="">
+
+      @endif
+    
+    <td>
     <td>
       <a href="{{route('aula.show',$aula->id )}}">MOSTRAR</a>,         
 

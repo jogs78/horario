@@ -10,6 +10,7 @@ use App\Models\Aula;
 USE Illuminate\Support\Facades\Auth; //autenticacion
 use Illuminate\Support\Facades\Gate; //autorizacion
 use Illuminate\Support\Facades\Log;  //auditoria
+use Illuminate\Support\Facades\Storage; //para poder usar los discos
 
 
 class AulaController extends Controller
@@ -42,18 +43,20 @@ class AulaController extends Controller
 //        @dump($datos);
         $nombre = $request->input('nombre');
         $capacidad = $request->input('capacidad');
+        $foto = $request->file('foto');
 //        @dump($nombre);
         $nueva = new Aula();
-
 /*
         $nueva->nombre = $nombre;
         $nueva->capacidad  = $capacidad;
 */
-        $nueva->fill($datos);        
+        $ruta = Storage::disk('fotos')->put('aulas',$foto);
+        $nueva->fill($datos); 
+        $nueva->foto = $ruta;     
+
         $nueva->save();
         Log::channel('aulas')->info("Aula Creada",["quien"=>Auth::user()->name, "cual:" => $nueva->nombre ]);
         return redirect('/');
-
     }
 
     /**
@@ -62,6 +65,13 @@ class AulaController extends Controller
     public function show(Aula $aula) //route model biding
     {
         return view('aulas.show',compact('aula'));
+    }
+
+    public function ver(Aula $aula) //route model biding
+    {
+        //si tiene permiso de ver la foto
+        //si cumple con ciertos requisitos
+        return response()->download(storage_path('app/fotos/') . $aula->foto);
     }
 
     /**
@@ -85,6 +95,17 @@ class AulaController extends Controller
     {
         //echo "actualizar...";
         $aula->fill($request->all());
+        $foto = $request->file('foto');
+//        dd($foto);
+
+        //reemplazar la foto
+        if($aula->foto == "nada"){
+            $ruta = Storage::disk('fotos')->put('aulas',$foto);
+        }else{
+            Storage::disk('fotos')->delete($aula->foto);
+            $ruta = Storage::disk('fotos')->put('aulas',$foto);
+        }
+        $aula->foto = $ruta;
         $aula->save();
         return redirect('/');
     }

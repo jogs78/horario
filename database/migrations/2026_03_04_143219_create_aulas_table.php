@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre',6);
             $table->integer('capacidad',false,true);
+            $table->string('foto')->default("nada");
             $table->timestamps();
         });
     }
