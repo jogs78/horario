@@ -19,12 +19,10 @@ LISTADO DE AULAS
       @if($aula->foto == "nada")
          SIN FOTO
       @else
-         
+         {{-- <img src="{{$aula->foto}}" alt="">  --}}       
          <img src="{{route('aula.ver',$aula->id)}}" alt="">
-
-      @endif
-    
-    <td>
+      @endif    
+    </td>
     <td>
       <a href="{{route('aula.show',$aula->id )}}">MOSTRAR</a>,         
 

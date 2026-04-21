@@ -53,7 +53,6 @@ class AulaController extends Controller
         $ruta = Storage::disk('fotos')->put('aulas',$foto);
         $nueva->fill($datos); 
         $nueva->foto = $ruta;     
-
         $nueva->save();
         Log::channel('aulas')->info("Aula Creada",["quien"=>Auth::user()->name, "cual:" => $nueva->nombre ]);
         return redirect('/');
@@ -118,4 +117,7 @@ class AulaController extends Controller
         $aula->delete(); 
         return redirect('/');
     }
+
+
+
 }
