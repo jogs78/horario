@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AulaController;
 use App\Http\Controllers\PuertaControllert;
+use App\Mail\Cupon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +49,11 @@ Route::post('/recibir',function( Request $request ){
  echo "guardado:";
  dump($z);
 })->name('archivos.recibir');
+
+Route::get('/enviar', function (){
+echo "enviando correo ... <br>";
+Mail::to('jogs78@yahoo.com')->send(new Cupon('Juanito'));
+echo " correo enviado ... <br>";
+
+
+});
