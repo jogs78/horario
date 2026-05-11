@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +30,11 @@ Route::get('mostrar/{aula}', [AulaController::class,'show'])->name('aula.show');
 Route::get('ver/{aula}', [AulaController::class,'ver'])->name('aula.ver');
 Route::post('guardar', [AulaController::class,'store'])->name('aula.store');
 Route::get('otro', [AulaController::class,'create'])->name('aula.create');
-Route::get('/',[AulaController::class,'index']);
+Route::get('aulas',[AulaController::class,'index'])->name('aula.index');
+
+Route::get('/',function (){
+  echo "";
+})->name('inicio');
 
 
 Route::get('/subir',function (){
@@ -51,9 +55,19 @@ Route::post('/recibir',function( Request $request ){
 })->name('archivos.recibir');
 
 Route::get('/enviar', function (){
-echo "enviando correo ... <br>";
-Mail::to('jogs78@yahoo.com')->send(new Cupon('Juanito'));
-echo " correo enviado ... <br>";
+  echo "enviando correo ... <br>";
+  Mail::to('jogs78@yahoo.com')->send(new Cupon('Juanito'));
+  echo " correo enviado ... <br>";
+});
 
+Route::get('/instalar', function () {
 
+    Artisan::call('db:wipe', [
+        '--force' => true
+    ]);
+    echo "<pre>" . Artisan::output() . "</pre>";
+    Artisan::call('migrate');
+    echo "<pre>" . Artisan::output() . "</pre>";
+    Artisan::call('db:seed');
+    echo "<pre>" . Artisan::output() . "</pre>";
 });
