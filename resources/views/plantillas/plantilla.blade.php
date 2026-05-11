@@ -8,7 +8,7 @@
 <body>
 @guest
   hola debes <a href="{{route('puerta.entrar')}}">entrar</a>
-  @php(die())
+  
 @else
  hola {{Auth::user()->nombre}}  puedes <a href="{{route('puerta.salir')}}">salir</a>
 @endguest
