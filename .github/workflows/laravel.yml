@@ -43,3 +43,13 @@ jobs:
 
       - name: Ejecutar pruebas
         run: php artisan test
+
+      - name: Instalar Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy Railway
+        run: railway up --service horario
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_GIT_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        
