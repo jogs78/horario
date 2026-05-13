@@ -3,5 +3,5 @@
 SISTEMA
 @endsection
 @section('contenido')
-...-10-...
+...-12-...
 @endsection
