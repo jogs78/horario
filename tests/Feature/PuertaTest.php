@@ -13,7 +13,7 @@ class PuertaTest extends TestCase
      */
     public function test_entrar(): void
     {
-        $response = $this->get('entrar13');
+        $response = $this->get('entrar');
         $response->assertStatus(200);
     }
 
