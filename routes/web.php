@@ -33,7 +33,7 @@ Route::get('otro', [AulaController::class,'create'])->name('aula.create');
 Route::get('aulas',[AulaController::class,'index'])->name('aula.index');
 
 Route::get('/',function (){
-  echo "";
+  return view('sistema.bienvenida');
 })->name('inicio');
 
 
