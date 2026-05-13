@@ -44,6 +44,14 @@ jobs:
       - name: Ejecutar pruebas
         run: php artisan test
 
+      - name: Crear enlaces simbólicos
+        run: |
+          mkdir -p storage/app/public
+          mkdir -p storage/app/scripts
+          mkdir -p storage/app/estilos
+
+          php artisan storage:link
+
       - name: Instalar Railway CLI
         run: npm install -g @railway/cli
 
